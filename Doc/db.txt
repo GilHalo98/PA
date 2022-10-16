@@ -1,0 +1,76 @@
+Usuario
+---
+    id PK
+    nombre
+    apellido
+    sexo
+    educacion
+    usaTransportePublico
+    domicilio
+    fechaNacimiento
+    sueldo
+
+Admin
+---
+    id PK
+    area
+    idUsuario FK - Usuario.id
+
+Operador
+---
+    id PK
+    oficina
+    idUsuario FK - Usuario.id
+
+Trabajador
+---
+    id PK
+    puesto
+    areaTrabajo
+    jefeInmediato
+    sociabilidad
+    idUsuario FK - Usuario.id
+
+GrupoTrabajo
+---
+    id PK
+    areaOperacion
+    descripcionFuncion
+    gefeGrupo FK - Trabajador.id
+    integrantes FK -< Trabajador.id
+
+Horario
+---
+    id PK
+    diasLaborales
+    diasDescanso
+    horasTrabajadas
+    idGrupoTrabajo FK - GrupoTrabajo.id
+
+Reporte
+---
+    id PK
+    descripcion
+    fechaExpedicion
+    reporteResuelto
+    idUsuario FK >- Usuario.id
+
+Peticion
+---
+    id PK
+    descripcion
+    aprobado
+    fechaExpedicion
+    idTrabajador FK >- Trabajador.id
+
+PeticionCambioGrupo
+---
+    id PK
+    idGrupoDeceado FK - GrupoTrabajo.id
+    idPeticion FK - Peticion.id
+
+PeticionCambioHorario
+---
+    id PK
+    idHorarioDeceado FK - Horario.id
+    idPeticion FK - Peticion.id
